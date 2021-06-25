@@ -9,7 +9,7 @@ import store from './src/store';
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor="#fff" barStyle="dark-content" translucent={true} />
+      <StatusBar backgroundColor="#000" barStyle="light-content" translucent />
       <Routes />
     </Provider>
   )

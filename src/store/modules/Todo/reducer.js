@@ -1,4 +1,4 @@
-import {Alert} from "react-native";
+import { Alert } from "react-native";
 
 let nextId = 1;
 export default function todo(state = [], action) {
@@ -8,34 +8,41 @@ export default function todo(state = [], action) {
       const newTodo = {
         id: nextId++,
         text: action.text,
-        done: false
-      }
-      if(newTodo.text === '') {
-        Alert.alert('Aviso', 'Todo vazio')
-        nextId--
-        return  state
+        done: false,
+      };
+      if (newTodo.text === "") {
+        Alert.alert("Aviso", "Todo vazio");
+        nextId--;
+        return state;
       }
       return [...state, newTodo];
 
-    case 'UPDATE_TODO': {
-      console.log('UPDATE_TODO: ', action.todo)
-      return state.map(todo => {
-        if(todo.id === action.todo.id) {
-          return action.todo
+    case "DELETE_TODO": {
+      // console.log("DELETE_TODO", action.todo);
+      while (state.length > 0) {
+        state.pop();
+      }
+      return state;
+    }
+
+    case "UPDATE_TODO": {
+      // console.log("UPDATE_TODO: ", action.todo);
+      return state.map((todo) => {
+        if (todo.id === action.todo.id) {
+          return action.todo;
         }
         return todo;
-      })
+      });
     }
 
     case "TOGGLE_TODO": {
       /*finalizando todo */
-      return state.map(todo => {
+      return state.map((todo) => {
         if (todo.id === action.todoId) {
-
           return {
             ...todo,
-            done: !todo.done
-          }
+            done: !todo.done,
+          };
         }
         return todo;
       });

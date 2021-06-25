@@ -1,31 +1,27 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity,Text } from 'react-native';
 import Input from './input';
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons';
 
-class Form extends Component {
-state ={
-  text : ''
-}
-  onChangeText(text) {
-    const { dispatch } = this.props;
+function Form ({todoSize = 0,todo}) {
+    const [text,setText] = useState('');
+    const dispatch = useDispatch();
+
+  function onChangeText(text) {
 
     dispatch({
       type: "SET_TODO",
       text
     })
-    this.setState({
-      text
-    })
+    setText(text)
   }
 
-  onPress = todo => {
-    const {dispatch} = this.props;
-    const {text} = this.state
+  function onPress (todo) {
 
     if (todo.id && todo.text !== '') {
-    console.log('UPDATE_TODO', todo.id)
+   // console.log('UPDATE_TODO', todo.id)
+   
        dispatch({
         type: "UPDATE_TODO",
         todo,
@@ -37,25 +33,21 @@ state ={
         text
       })
     }
-    this.setState({ text: ''}) /*state */
+    setText('') /*state */
   }
 
-  render() {
-    const {todoSize} = this.props
-    const {text} = this.props.todo
-    const {todo} = this.props
     return (
       <View style={styles.container}>
         <View style={styles.input}>
           <Input
-            value={text}
-            onChangeText={text => this.onChangeText(text)}
-            onSubmitEditing={() => this.onPress(todo)}
+            value={todo.text}
+            onChangeText={text => onChangeText(text)}
+            onSubmitEditing={() => onPress(todo)}
           />
         </View>
         <View style={styles.button}>
           <TouchableOpacity
-            onPress={() => this.onPress(todo)}
+            onPress={() => onPress(todo)}
           >
             <Ionicons
                 name={todo.id ? 'save' : "add-circle-sharp" }
@@ -63,12 +55,11 @@ state ={
             />
 
           </TouchableOpacity>
-          <Text style={styles.total}>{todoSize ? todoSize : 0}</Text>
+          <Text style={styles.total}>{todoSize}</Text>
 
         </View>
       </View>
     )
-  }
 }
 
 export default connect(state => ({

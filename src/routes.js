@@ -1,45 +1,48 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const AppStack = createStackNavigator();
 
-import Todo from './pages/Todo'
-import {connect} from "react-redux";
+import Todo from "./pages/Todo";
+import { connect, useDispatch } from "react-redux";
 
-const Routes = ({todoSize}) => {
-    return (
-        <NavigationContainer>
-            <AppStack.Navigator screenOptions={{
-                headerShown: true,
-                headerTitleAlign: 'center',
-                headerTintColor: "#fff",
-                headerStyle: {
-                    backgroundColor: "#074885"
-                },
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                }
-            }}>
-                <AppStack.Screen
-                    name='Todo'
-                    component={Todo}
-                       options={{
-                           title: `Total de To-dos: ${todoSize}`,
-                           headerRight: () => (
-                               <MaterialCommunityIcons
-                                   style={{ marginRight: 50 }}
-                                   name="file-document-edit"
-                                   size={36}
-                                   color={todoSize > 0 ? '#fff':'#074885' }
-                               />
-                           )}}
-                />
-            </AppStack.Navigator>
-        </NavigationContainer>
-    );
-}
-export default connect(state => ({
-    todoSize: state.todo.length,
+import deleteTodos from "./utils/deleteTodos";
+import screenOptions from "./constants/screenOptions";
+
+const Routes = ({ todo }) => {
+  const dispatch = useDispatch();
+
+  function deleteTodo() {
+    dispatch({
+      type: "DELETE_TODO",
+    });
+  }
+
+  return (
+    <NavigationContainer>
+      <AppStack.Navigator screenOptions={screenOptions}>
+        <AppStack.Screen
+          name="Todo"
+          component={Todo}
+          options={{
+            title: `Total de to-dos: ${todo.length}`,
+            headerRight: () => (
+              <MaterialCommunityIcons
+                style={{ marginRight: 50 }}
+                name="trash-can"
+                size={32}
+                color="#fff"
+                onPress={() => deleteTodos(todo, deleteTodo)}
+              />
+            ),
+          }}
+        />
+      </AppStack.Navigator>
+    </NavigationContainer>
+  );
+};
+export default connect((state) => ({
+  todo: state.todo,
 }))(Routes);
