@@ -5,7 +5,7 @@ Um aplicativo criado com o Expo para estudo da biblioteca REDUX
 
 O app contém os seguintes módulos
 
-* Uma tela que gera para adicionar,deletar,editar to-dos como redux
+* Uma tela que para adicionar,deletar e editar to-dos com redux
 
 ## Explicação do aplicativo no LinkedIn
 * [Explicação do aplicativo](https://www.linkedin.com/posts/carlos-ferreira-4b2ba219a_redux-reactnative-activity-6796145496735010816-64YB)
