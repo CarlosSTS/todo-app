@@ -1,13 +1,11 @@
 # todoRedux
-Um aplicativo criado com o Expo para listagem de pessoas usando a api do randomuser.me
+Um aplicativo criado com o Expo para estudo da biblioteca REDUX
 
 ## módulos
 
 O app contém os seguintes módulos
 
-* Uma tela que gera dados de pessoas aleatórios buscados da api randomuser.me
-* Uma tela com os detalhes desse usuário
-* As telas também possuem rederização condicional para casos de erros.
+* Uma tela que gera para adicionar,deletar,editar to-dos como redux
 
 ## Explicação do aplicativo no LinkedIn
 * [Explicação do aplicativo](https://www.linkedin.com/posts/carlos-ferreira-4b2ba219a_redux-reactnative-activity-6796145496735010816-64YB)
