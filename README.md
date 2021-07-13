@@ -9,14 +9,11 @@ O app contém os seguintes módulos
 * Uma tela com os detalhes desse usuário
 * As telas também possuem rederização condicional para casos de erros.
 
-## Veja no LinkedIn
-* [Ir para o LinkedIn](https://www.linkedin.com/posts/carlos-ferreira-4b2ba219a_redux-reactnative-activity-6796145496735010816-64YB)
+## Explicação do aplicativo no LinkedIn
+* [Explicação do aplicativo](https://www.linkedin.com/posts/carlos-ferreira-4b2ba219a_redux-reactnative-activity-6796145496735010816-64YB)
 
 ## páginas
 ![Foto do App](https://github.com/CarlosSTS/todoRedux/blob/master/gifProject.jpg)
-
-## Explicação do aplicativo no LinkedIn
-* [Explicação do aplicativo](https://www.linkedin.com/posts/carlos-ferreira-4b2ba219a_redux-reactnative-activity-6796145496735010816-64YB)
 
 ## Testando
 RODANDO O PROJETO
