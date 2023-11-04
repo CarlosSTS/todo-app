@@ -1,4 +1,4 @@
-# todoRedux
+# todo-app
 Um aplicativo criado com o Expo para estudo da biblioteca REDUX
 
 ## módulos
