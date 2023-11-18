@@ -24,43 +24,41 @@ const TodoList = ({ todo = [] }) => {
 
   return (
     <View style={styles.container}>
-      {todo.length === 0 ? (
-        <Text style={styles.nothing}>Nenhum to-do criado</Text>
-      ) : (
-        <FlatList
-          data={todo}
-          keyExtractor={(todo) => String(todo.id)}
-          renderItem={({ item: todo }) => (
-            <TouchableOpacity onPress={() => onPress(todo.id)}>
-              <View style={styles.line}>
-                <Text
-                  style={[
-                    styles.lineText,
-                    todo.done && styles.lineThough,
-                    todo.text.length > 20 && styles.lengthText,
-                  ]}
-                >
-                  {todo.id}) {todo.text}
-                </Text>
-                <View style={styles.icon}>
-                  <AntDesign
-                    name="checkcircle"
-                    size={34}
-                    color={todo.done ? "#074885" : "#999"}
-                  />
-                  <Entypo
-                    onPress={() => onPressEdit(todo)}
-                    style={styles.editIcon}
-                    name="edit"
-                    size={34}
-                    color={todo.done ? "#666" : "#000"}
-                  />
-                </View>
+
+      <FlatList
+        data={todo}
+        keyExtractor={(todo) => String(todo.id)}
+        ListEmptyComponent={<Text style={styles.nothing}>Nenhum to-do criado</Text>}
+        renderItem={({ item: todo }) => (
+          <TouchableOpacity onPress={() => onPress(todo.id)}>
+            <View style={styles.line}>
+              <Text
+                style={[
+                  styles.lineText,
+                  todo.done && styles.lineThough,
+                  todo.text.length > 20 && styles.lengthText,
+                ]}
+              >
+                {todo.id}) {todo.text}
+              </Text>
+              <View style={styles.icon}>
+                <AntDesign
+                  name="checkcircle"
+                  size={34}
+                  color={todo.done ? "#074885" : "#999"}
+                />
+                <Entypo
+                  onPress={() => onPressEdit(todo)}
+                  style={styles.editIcon}
+                  name="edit"
+                  size={34}
+                  color={todo.done ? "#666" : "#000"}
+                />
               </View>
-            </TouchableOpacity>
-          )}
-        />
-      )}
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };

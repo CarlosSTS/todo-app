@@ -10,8 +10,14 @@ export default function todo(state = [], action) {
         text: action.text,
         done: false,
       };
-      if (newTodo.text === "") {
-        Alert.alert("Aviso", "Todo vazio");
+      if (!newTodo.text) {
+        Alert.alert("Aviso", "Todo vazio", [
+          {
+            text: 'Digite algo',
+            onPress: () => {},
+            style: 'default'
+          }
+        ], { cancelable: false });
         nextId--;
         return state;
       }
